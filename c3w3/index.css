@@ -1,0 +1,91 @@
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+main {
+  display:flex;
+  flex: 1 0 auto;
+}
+
+footer{
+   flex: 0 0 auto;
+}
+
+aside {
+  width:200px;
+}
+
+.left {
+  order:1;
+}
+
+.right {
+  order:3;
+}
+
+.cats {
+  flex:auto;
+  order:2;
+}
+
+.cats ul {
+  display:flex;
+  list-style: none;
+  margin:0;
+  padding:0;
+  flex-wrap:wrap;
+}
+
+.cats li {
+  display:block;
+  position:relative;
+  height:100px;
+  overflow:hidden;
+}
+
+.cats article::before {
+  display:block;
+  content:'';
+  position:absolute;
+  top:5px;
+  left:5px;
+  right:5px;
+  bottom:5px;
+  background:50% 20% no-repeat;
+  background-size:cover;
+}
+
+#c1::before {background-image:url(afb/c1.jpg)}
+#c2::before {background-image:url(afb/c2.jpg)}
+#c3::before {background-image:url(afb/c3.jpg)}
+#c4::before {background-image:url(afb/c4.jpg)}
+#c5::before {background-image:url(afb/c5.jpg)}
+#c6::before {background-image:url(afb/c6.jpg)}
+#c7::before {background-image:url(afb/c7.jpg)}
+#c8::before {background-image:url(afb/c8.jpg)}
+#c9::before {background-image:url(afb/c9.jpg)}
+
+.cats li:nth-child(8n+1),
+.cats li:nth-child(8n+3),
+.cats li:nth-child(8n+4),
+.cats li:nth-child(8n+5),
+.cats li:nth-child(8n+7) {
+  flex-basis:33.33%;
+}
+
+.cats li:nth-child(8n+2),
+.cats li:nth-child(8n+6) {
+  flex-basis:66.67%;
+}
+
+.cats li:nth-child(8n+8){
+  flex-basis:100%;
+}

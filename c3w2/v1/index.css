@@ -1,0 +1,143 @@
+.slide {
+  height:200px;
+  width:880px;
+  box-sizing:content-box;
+  margin:0 auto;
+  overflow: visible;
+  white-space: nowrap;
+  font-size:0;
+}
+
+.slide img {
+  width:200px;
+  vertical-align: middle;
+}
+
+.slide ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:inline-block;
+  white-space:nowrap;
+}
+
+.slide li {
+  position:relative;
+  display:inline-block;
+  margin:0;
+  vertical-align: middle;
+  transform:scale(1);
+  cursor:pointer;
+  width:0px;
+  overflow:hidden;
+  opacity:0;
+  transition:width 0.2s linear,transform 0.1s,margin 0.2s linear,opacity 0.2s linear;
+}
+
+.slide li:hover {
+  transform:scale(1.35);
+  z-index:2;
+}
+
+
+.card {
+  top:0;
+  left:0px;
+  position:absolute;
+  width:200px;
+  font-size:0.6rem;
+  white-space: normal;
+  display:block;
+  opacity:0;
+  z-index:-1;
+}
+
+.slide li:hover .card {
+  opacity:1;
+}
+
+.card::before {
+  display:block;
+  content:'';
+}
+
+#c1 .card::before {
+  height:200px;
+}
+#c2 .fix {
+  height:150px;
+}
+#c3 .fix {
+  height:108px;
+}
+#c4 .fix {
+  height:120px;
+}
+
+.card .bg {
+  background:#fff;
+  box-shadow: 0 0 5px #000;
+  position:absolute;
+  top:-12px;
+  left:-12px;
+  right:-12px;
+  bottom:-12px;
+  z-index:-1;
+}
+
+input[name="pagesel"] {
+  display:none;
+}
+
+.pages {
+  margin-top:120px;
+  text-align: center;
+}
+
+.pages label {
+  display:inline-block;
+  cursor:pointer;
+  vertical-align:middle;
+  border-radius:6px;
+  border:1px solid #888;
+  color:#aaa;
+  font-size:4px;
+  line-height:12px;
+  width:12px;
+  height:12px;
+  overflow:hidden;
+  text-align:center;
+}
+
+.pages label::before {
+  content:"\26AB";
+  display:inline;
+  opacity:0;
+}
+
+#p1:checked ~ .pages .p1::before,
+#p2:checked ~ .pages .p2::before,
+#p3:checked ~ .pages .p3::before,
+#p4:checked ~ .pages .p4::before,
+#p5:checked ~ .pages .p5::before {
+  opacity:0.8;
+}
+
+#p1:checked ~ .slide .page1 li,
+#p1:checked ~ .slide .page2 li,
+#p2:checked ~ .slide .page2 li,
+#p2:checked ~ .slide .page3 li,
+#p2:checked ~ .slide .page4 li,
+#p3:checked ~ .slide .page4 li,
+#p3:checked ~ .slide .page5 li,
+#p3:checked ~ .slide .page6 li,
+#p4:checked ~ .slide .page6 li,
+#p4:checked ~ .slide .page7 li,
+#p4:checked ~ .slide .page8 li,
+#p5:checked ~ .slide .page8 li,
+#p5:checked ~ .slide .page9 li {
+  width:200px;
+  margin:0 10px;
+  overflow:visible;
+  opacity:1;
+}
