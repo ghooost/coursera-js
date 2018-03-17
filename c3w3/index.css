@@ -7,9 +7,11 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin:0;
+    margin:0 auto;
     padding:0;
     font-family: sans-serif;
+    min-width:950px;
+    max-width:1200px;
 }
 main {
   flex: 1 0 auto;
@@ -90,22 +92,98 @@ aside {
   background-color:#aaa;
   align-self:flex-start;
   margin:0 0 5px 2.5px;
+  box-sizing:border-box;
+  padding:0 1em;
+}
+
+.right h2 {
+  font-size:1.2em;
+  text-transform: uppercase;
+  font-weight: normal;
+  color:#f00;
+}
+
+.right label {
+  display:block;
+  text-align:right;
+  font-size:0.8em;
+  margin:1em 0;
+  cursor:pointer;
+}
+
+.right label::after {
+  display:inline;
+  content:'\2610';
+  font-size:1.5em;
+  margin-left:0.5em;
+  vertical-align:baseline;
+}
+
+.right #sort {
+  display:none;
+}
+
+.right #sort:checked ~ label::after {
+  content:'\2611';
 }
 
 .right ul {
-  display:block;
+  display:flex;
+  flex-direction: column;
   margin:0;
   padding:0;
   list-style: none;
 }
+
 .right li {
   display:block;
+  position:relative;
+  margin:0.5em 0;
 }
+
+.right li:before {
+  display:block;
+  content:'';
+  position:absolute;
+  bottom:0.6em;
+  left:0;
+  height:0.8em;
+  right:3em;
+  border:1px solid black;
+  background: linear-gradient(to right, #f00, #fff);
+}
+
 .right li::after {
   display:block;
   content:attr(data-rating);
+  width:2em;
+  text-align:right;
   margin:0.5em 0 0.5em auto;
 }
+
+.right li[data-rating="10"]::before {
+  right:3em;
+  filter: hue-rotate(90deg);
+}
+.right li[data-rating="9"]::before {
+  right:4em;
+  filter: hue-rotate(90deg);
+}
+.right li[data-rating="8"]::before {
+  right:5em;
+  filter: hue-rotate(45deg);
+}
+.right li[data-rating="4"]::before {
+  right:7em;
+  filter: hue-rotate(0deg);
+}
+
+.right #sort:checked ~ ul li[data-rating="10"] { order:1;}
+.right #sort:checked ~ ul li[data-rating="9"] {order:2;}
+.right #sort:checked ~ ul li[data-rating="8"] {order:3;}
+.right #sort:checked ~ ul li[data-rating="4"] {order:4;}
+
+
 
 .cats {
   flex:auto;
@@ -127,50 +205,52 @@ aside {
   overflow:hidden;
 }
 
-.cats li::before {
+.cats article {
   display:block;
-  content:'';
   position:absolute;
   top:0px;
   left:2.5px;
   right:2.5px;
   bottom:5px;
-  background:50% 20% no-repeat;
+  overflow:hidden;
+  background:top center no-repeat;
   background-size:cover;
 }
 
-.cats li article {
+#c1 {background-image:url(afb/c1.jpg)}
+#c2 {background-image:url(afb/c2.jpg)}
+#c3 {background-image:url(afb/c3.jpg)}
+#c4 {background-image:url(afb/c4.jpg)}
+#c5 {background-image:url(afb/c5.jpg)}
+#c6 {background-image:url(afb/c6.jpg)}
+#c7 {background-image:url(afb/c7.jpg)}
+#c8 {background-image:url(afb/c8.jpg)}
+#c9 {background-image:url(afb/c9.jpg)}
+
+.cats img {
+  display:none;
+}
+
+.cats article::after {
+  content:attr(data-note);
   display:block;
   position:absolute;
-  padding:0.2em 1em;
+  padding:1em;
   overflow:hidden;
   left:2.5px;
   bottom:15px;
   background:#000;
   opacity:0;
   color:#fff;
+  line-height:1em;
   transition:opacity 0.3s;
 }
 
-.cats li:hover article {
+.cats li:hover article::after {
   opacity:0.7;
 }
 
-#c1::before {background-image:url(afb/c1.jpg)}
-#c2::before {background-image:url(afb/c2.jpg)}
-#c3::before {background-image:url(afb/c3.jpg)}
-#c4::before {background-image:url(afb/c4.jpg)}
-#c5::before {background-image:url(afb/c5.jpg)}
-#c6::before {background-image:url(afb/c6.jpg)}
-#c7::before {background-image:url(afb/c7.jpg)}
-#c8::before {background-image:url(afb/c8.jpg)}
-#c9::before {background-image:url(afb/c9.jpg)}
-
-.cats li:nth-child(8n+1),
-.cats li:nth-child(8n+3),
-.cats li:nth-child(8n+4),
-.cats li:nth-child(8n+5),
-.cats li:nth-child(8n+7) {
+.cats li {
   flex-basis:33.33%;
 }
 
@@ -187,24 +267,9 @@ aside {
   display:none;
 }
 
-#b1:checked ~ .show .left #l1 {
-  background:#888;
-  color:#fff;
-  border-color:#fff;
-}
-
-#b2:checked ~ .show .left #l2 {
-  background:#888;
-  color:#fff;
-  border-color:#fff;
-}
-
-#b3:checked ~ .show .left #l3 {
-  background:#888;
-  color:#fff;
-  border-color:#fff;
-}
-
+#b1:checked ~ .show .left #l1,
+#b2:checked ~ .show .left #l2,
+#b3:checked ~ .show .left #l3,
 #b4:checked ~ .show .left #l4 {
   background:#888;
   color:#fff;
@@ -215,30 +280,32 @@ aside {
   display:none;
 }
 
-#b1:checked ~ .show .cats li:not(li[data-breed="b1"]) {
-  opacity:0.5;
-}
-#b1:checked ~ .show .cats li:not(li[data-breed="b1"]) article {
-  display:none;
-}
-
-#b2:checked ~ .show .cats li:not(li[data-breed="b2"]) {
-  opacity:0.5;
-}
-#b2:checked ~ .show .cats li:not(li[data-breed="b2"]) article {
-  display:none;
-}
-
-#b3:checked ~ .show .cats li:not(li[data-breed="b3"]) {
-  opacity:0.5;
-}
-#b3:checked ~ .show .cats li:not(li[data-breed="b3"]) article {
-  display:none;
+#b1:checked ~ .show .cats article[data-breed="b2"],
+#b1:checked ~ .show .cats article[data-breed="b3"],
+#b1:checked ~ .show .cats article[data-breed="b4"],
+#b2:checked ~ .show .cats article[data-breed="b1"],
+#b2:checked ~ .show .cats article[data-breed="b3"],
+#b2:checked ~ .show .cats article[data-breed="b4"],
+#b3:checked ~ .show .cats article[data-breed="b1"],
+#b3:checked ~ .show .cats article[data-breed="b2"],
+#b3:checked ~ .show .cats article[data-breed="b4"],
+#b4:checked ~ .show .cats article[data-breed="b1"],
+#b4:checked ~ .show .cats article[data-breed="b2"],
+#b4:checked ~ .show .cats article[data-breed="b3"] {
+  opacity:0.3;
 }
 
-#b4:checked ~ .show .cats li:not(li[data-breed="b4"]) {
-  opacity:0.5;
-}
-#b4:checked ~ .show .cats li:not(li[data-breed="b4"]) article {
+#b1:checked ~ .show .cats article[data-breed="b2"]::after,
+#b1:checked ~ .show .cats article[data-breed="b3"]::after,
+#b1:checked ~ .show .cats article[data-breed="b4"]::after,
+#b2:checked ~ .show .cats article[data-breed="b1"]::after,
+#b2:checked ~ .show .cats article[data-breed="b3"]::after,
+#b2:checked ~ .show .cats article[data-breed="b4"]::after,
+#b3:checked ~ .show .cats article[data-breed="b1"]::after,
+#b3:checked ~ .show .cats article[data-breed="b2"]::after,
+#b3:checked ~ .show .cats article[data-breed="b4"]::after,
+#b4:checked ~ .show .cats article[data-breed="b1"]::after,
+#b4:checked ~ .show .cats article[data-breed="b2"]::after,
+#b4:checked ~ .show .cats article[data-breed="b3"]::after {
   display:none;
 }
