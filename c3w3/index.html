@@ -10,51 +10,80 @@
   <h1>Бабуленькины котятки</h1>
 </header>
 <main>
-  <aside class="left">
-    left menu
-  </aside>
-  <aside class="right">
-    right menu
-  </aside>
-  <section class="cats">
-    <ul>
-      <li>
-        <article id="c1">
-        </article>
-      </li>
-      <li>
-        <article id="c2">
-        </article>
-      </li>
-      <li>
-        <article id="c3">
-        </article>
-      </li>
-      <li>
-        <article id="c4">
-        </article>
-      </li>
-      <li>
-        <article id="c5">
-        </article>
-      </li>
-      <li>
-        <article id="c6">
-        </article>
-      </li>
-      <li>
-        <article id="c7">
-        </article>
-      </li>
-      <li>
-        <article id="c8">
-        </article>
-      </li>
-    </ul>
+  <input type="radio" id="b1" name="breed">
+  <input type="radio" id="b2" name="breed">
+  <input type="radio" id="b3" name="breed">
+  <input type="radio" id="b4" name="breed">
+  <input type="radio" id="b5" name="breed" checked>
+  <section class="show">
+    <aside class="left">
+      <ul>
+        <li id="l1"><label for="b1">Абессинская</label></li>
+        <li id="l2"><label for="b2">Британская</label></li>
+        <li id="l3"><label for="b3">Русская голубая</label></li>
+        <li id="l4"><label for="b4">Сиамская</label></li>
+        <li id="l5"><label for="b5">Показать все</label></li>
+      </ul>
+    </aside>
+    <aside class="right">
+      <h2>Рейтинг</h2>
+      <label>по убыванию <input type="checkbox"></label>
+      <ul>
+        <li data-rating="10">Абессинская</li>
+        <li data-rating="9">Британская</li>
+        <li data-rating="8">Русская голубая</li>
+        <li data-rating="4">Сиамская</li>
+      </ul>
+    </aside>
+    <section class="cats">
+      <ul>
+        <li id="c1" data-breed="b1">
+          <article>
+            <p>Гоша, 4 года<p>
+          </article>
+        </li>
+        <li id="c2" data-breed="b2">
+          <article>
+            <p>Коша, 4 года<p>
+          </article>
+        </li>
+        <li id="c3" data-breed="b3">
+          <article>
+            <p>Доша, 4 года<p>
+          </article>
+        </li>
+        <li id="c4" data-breed="b4">
+          <article>
+            <p>Роша, 4 года<p>
+          </article>
+        </li>
+        <li id="c5" data-breed="b1">
+          <article>
+            <p>Моша, 4 года<p>
+          </article>
+        </li>
+        <li id="c6" data-breed="b2">
+          <article>
+            <p>Цоша, 4 года<p>
+          </article>
+        </li>
+        <li id="c7" data-breed="b3">
+          <article>
+            <p>Шоша, 4 года<p>
+          </article>
+        </li>
+        <li id="c8" data-breed="b4">
+          <article>
+            <p>Фоша, 4 года<p>
+          </article>
+        </li>
+      </ul>
+    </section>
   </section>
 </main>
 <footer>
-  &copy; Babul'ka Technicolor Production
+  <div class="copy">&copy; Babul'ka Technicolor Production</div>
+  <address>Наш адрес: улица Котовая д.5</address>
 </footer>
 </body>
 </html>

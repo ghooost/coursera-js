@@ -1,5 +1,6 @@
 html{
     height: 100%;
+    background:#eee;
 }
 
 body{
@@ -8,15 +9,46 @@ body{
     height: 100%;
     margin:0;
     padding:0;
+    font-family: sans-serif;
 }
-
 main {
-  display:flex;
   flex: 1 0 auto;
 }
 
-footer{
-   flex: 0 0 auto;
+header {
+  text-align:center;
+}
+
+footer {
+   flex: 0 0 50px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-top:1px solid #888;
+   position:relative;
+}
+footer::before {
+  display:block;
+  position:absolute;
+  height:1px;
+  content:'';
+  background-color: #fff;
+  top:1px;
+  left:0;
+  right:0;
+}
+
+footer .copy {
+  margin-left:1em;
+}
+
+footer address {
+  margin-right:1em;
+  align-items: flex-end;
+}
+
+.show {
+  display:flex;
 }
 
 aside {
@@ -25,10 +57,54 @@ aside {
 
 .left {
   order:1;
+  background-color:#aaa;
+  margin:0 2.5px 5px 0;
 }
+
+.left ul {
+  display:block;
+  list-style: none;
+  margin:0;
+  padding:0;
+  flex-direction: column;
+}
+
+.left li {
+  display:block;
+  border:1px solid black;
+  border-width: 1px 0;
+}
+
+.left label {
+  display:block;
+  padding:0 1em;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  line-height:51px;
+  cursor:pointer;
+}
+
 
 .right {
   order:3;
+  background-color:#aaa;
+  align-self:flex-start;
+  margin:0 0 5px 2.5px;
+}
+
+.right ul {
+  display:block;
+  margin:0;
+  padding:0;
+  list-style: none;
+}
+.right li {
+  display:block;
+}
+.right li::after {
+  display:block;
+  content:attr(data-rating);
+  margin:0.5em 0 0.5em auto;
 }
 
 .cats {
@@ -47,20 +123,37 @@ aside {
 .cats li {
   display:block;
   position:relative;
-  height:100px;
+  height:210px;
   overflow:hidden;
 }
 
-.cats article::before {
+.cats li::before {
   display:block;
   content:'';
   position:absolute;
-  top:5px;
-  left:5px;
-  right:5px;
+  top:0px;
+  left:2.5px;
+  right:2.5px;
   bottom:5px;
   background:50% 20% no-repeat;
   background-size:cover;
+}
+
+.cats li article {
+  display:block;
+  position:absolute;
+  padding:0.2em 1em;
+  overflow:hidden;
+  left:2.5px;
+  bottom:15px;
+  background:#000;
+  opacity:0;
+  color:#fff;
+  transition:opacity 0.3s;
+}
+
+.cats li:hover article {
+  opacity:0.7;
 }
 
 #c1::before {background-image:url(afb/c1.jpg)}
@@ -88,4 +181,64 @@ aside {
 
 .cats li:nth-child(8n+8){
   flex-basis:100%;
+}
+
+#b1,#b2,#b3,#b4,#b5 {
+  display:none;
+}
+
+#b1:checked ~ .show .left #l1 {
+  background:#888;
+  color:#fff;
+  border-color:#fff;
+}
+
+#b2:checked ~ .show .left #l2 {
+  background:#888;
+  color:#fff;
+  border-color:#fff;
+}
+
+#b3:checked ~ .show .left #l3 {
+  background:#888;
+  color:#fff;
+  border-color:#fff;
+}
+
+#b4:checked ~ .show .left #l4 {
+  background:#888;
+  color:#fff;
+  border-color:#fff;
+}
+
+#b5:checked ~ .show .left #l5 {
+  display:none;
+}
+
+#b1:checked ~ .show .cats li:not(li[data-breed="b1"]) {
+  opacity:0.5;
+}
+#b1:checked ~ .show .cats li:not(li[data-breed="b1"]) article {
+  display:none;
+}
+
+#b2:checked ~ .show .cats li:not(li[data-breed="b2"]) {
+  opacity:0.5;
+}
+#b2:checked ~ .show .cats li:not(li[data-breed="b2"]) article {
+  display:none;
+}
+
+#b3:checked ~ .show .cats li:not(li[data-breed="b3"]) {
+  opacity:0.5;
+}
+#b3:checked ~ .show .cats li:not(li[data-breed="b3"]) article {
+  display:none;
+}
+
+#b4:checked ~ .show .cats li:not(li[data-breed="b4"]) {
+  opacity:0.5;
+}
+#b4:checked ~ .show .cats li:not(li[data-breed="b4"]) article {
+  display:none;
 }
