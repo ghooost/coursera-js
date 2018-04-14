@@ -74,14 +74,22 @@ h1 {
   top:0;
   left:0;
   position: absolute;
-  background:#fff;
+  background-color:#fff;
   border-radius:9px;
   box-sizing: border-box;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   display:block;
   transform:translate3d(0px,0px,0px);
+  transition:background-color 0.5s;
 }
 
 .board_items li.reversed {
   transform: rotate3d(0,1,0,180deg);
+}
+
+.board_items li[data-mode="success"]::after {
+  background-color:#5AD66F;
+}
+.board_items li[data-mode="error"]::after {
+  background-color:#F44336;
 }
