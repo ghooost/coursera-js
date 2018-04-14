@@ -1,6 +1,5 @@
 (function(){
   var reverseClass="reversed";
-  var normalClass="normal";
   window.addEventListener("load", function(){
     var cards=document.querySelectorAll(".board_items li");
     for(var cnt=0,m=cards.length;cnt<m;cnt++){
@@ -9,13 +8,11 @@
   }, true);
 
   function rotateFaceUp(oCard){
-      oCard.classList.remove(normalClass);
       oCard.classList.add(reverseClass);
   }
 
   function rotateFaceDown(oCard){
       oCard.classList.remove(reverseClass);
-      oCard.classList.add(normalClass);
   }
 
   function isFaceUp(oCard){
