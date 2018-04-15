@@ -46,6 +46,7 @@
         waitForStart=500;
       }
     };
+    this.timer.reset();
     setTimeout(this.start.bind(this),waitForStart);
   }
 
@@ -172,6 +173,10 @@
     this.timerid=0;
     this.timeLimit=timeLimit;
     this.onLimitReached=onLimitReached;
+  }
+  Timer.prototype.reset=function(){
+    this.value=0;
+    this.render();
   }
   Timer.prototype.start=function(){
     this.value=this.timeLimit;
