@@ -1,0 +1,197 @@
+html {
+  margin:0;
+  padding:0;
+  background: #CFD0CF;
+}
+
+body {
+  margin:0;
+  padding:0;
+  font-family: Arial;
+  color:#434344;
+}
+
+header {
+  display:block;
+  text-align:center;
+}
+
+h1 {
+  margin:40px;
+  font-size:42px;
+  font-family:Arial;
+  line-height: 1em;
+}
+
+.memoji_timer {
+  margin:30px;
+  font-size:32px;
+  font-family:Arial;
+  line-height: 1em;
+  text-align:center;
+}
+
+.memoji_board {
+  list-style: none;
+  margin:0;
+  padding:0;
+  display:grid;
+  width:595px;
+  margin:0 auto;
+  grid-template-columns: repeat(4,130px);
+  grid-auto-rows: 130px;
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+  perspective:600px;
+  perspective-origin: center;
+}
+
+.memoji_board li {
+  display:block;
+  width:130px;
+  height:130px;
+  position:relative;
+  cursor:pointer;
+  transform:rotate3d(0,1,0,0deg);
+  transform-style: preserve-3d;
+  transition:transform 0.5s;
+}
+
+.memoji_board li::before {
+  content:'';
+  width:130px;
+  height:130px;
+  top:0;
+  left:0;
+  position: absolute;
+  background:linear-gradient(45deg, #22AB93, #19668D);
+  border-radius:9px;
+  border:5px solid #fff;
+  box-sizing: border-box;
+  display:block;
+  transform:translate3d(0px,0px,1px);
+}
+
+.memoji_board li::after {
+  content:attr(data-emo);
+  width:130px;
+  height:130px;
+  font-size:75px;
+  text-align:center;
+  line-height:130px;
+  top:0;
+  left:0;
+  position: absolute;
+  background-color:#fff;
+  border-radius:9px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  display:block;
+  transform:translate3d(0px,0px,0px);
+  transition:background-color 0.5s;
+}
+
+.memoji_board li.reversed {
+  transform: rotate3d(0,1,0,180deg);
+}
+
+.memoji_board li[data-mode="success"]::after {
+  background-color:#5AD66F;
+}
+.memoji_board li[data-mode="error"]::after {
+  background-color:#F44336;
+}
+
+
+.memoji_popup {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  display:none;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.memoji_popup.show {
+  display:flex;
+}
+
+.memoji_popup::before {
+  content:'';
+  display:block;
+  position:absolute;
+  background-color:#000;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  z-index:-1;
+  opacity:0.7;
+}
+
+.memoji_popup_dlg {
+  min-width:350px;
+  background-color:#fff;
+  box-sizing: border-box;
+  padding:30px;
+  text-align:center;
+}
+.memoji_popup_message {
+  margin:0 0 40px 0;
+  font-size:48px;
+  padding:0;
+}
+.memoji_popup_button {
+  margin:0;
+  padding:10px 30px;
+  font-size:20px;
+  line-height:20px;
+  border:none;
+  border-radius:5px;
+  background:linear-gradient(90deg, #19668D,#22AB93);
+  color:#fff;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  cursor:pointer;
+}
+.memoji_popup_button:active {
+  color:#fff;
+  box-shadow: inset 2px 1px 8px rgba(0, 0, 0, 0.5);
+}
+.memoji_popup_button:focus {
+  outline:0;
+}
+
+.memoji_popup_message span {
+  display:inline-block;
+  animation: ani 1.2s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+.memoji_popup_message span:nth-child(1) {
+  animation-delay: -0.9s;
+}
+.memoji_popup_message span:nth-child(2) {
+  animation-delay: -0.6s;
+}
+.memoji_popup_message span:nth-child(3) {
+  animation-delay: -0.3s;
+}
+.memoji_popup_message span:nth-child(4) {
+  animation-delay: 0s;
+}
+
+@keyframes ani {
+  0% {
+    transform:scaleY(1);
+  }
+  50% {
+    transform:scaleY(0.5);
+  }
+  100% {
+    transform:scaleY(1);
+  }
+}
